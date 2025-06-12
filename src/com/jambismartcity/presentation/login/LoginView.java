@@ -4,6 +4,8 @@
  */
 package com.jambismartcity.presentation.login;
 
+import com.jambismartcity.presentation.register.RegisterView;
+
 /**
  *
  * @author Kelompok 3;
@@ -75,6 +77,11 @@ public class LoginView extends javax.swing.JFrame {
         dontHaveAccountLabel.setText("Belum punya akun?");
 
         registLabel.setText("<html><u>Register</u></html>");
+        registLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                registLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,6 +178,11 @@ public class LoginView extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         controller.login();
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void registLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registLabelMouseClicked
+        new RegisterView().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_registLabelMouseClicked
 
     /**
      * @param args the command line arguments

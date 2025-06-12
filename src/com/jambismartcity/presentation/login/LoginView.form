@@ -175,6 +175,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;u&gt;Register&lt;/u&gt;&lt;/html&gt;"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="registLabelMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

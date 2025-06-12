@@ -4,9 +4,11 @@
  */
 package com.jambismartcity;
 
+import com.jambismartcity.presentation.login.LoginView; 
+import javax.swing.SwingUtilities;
 /**
  *
- * @author zhikri
+ * @author Kelompok 3
  */
 public class JambiSmartCity {
 
@@ -14,7 +16,16 @@ public class JambiSmartCity {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                //Membuat objek LoginView dan menampilkannya
+                new LoginView().setVisible(true);
+            }
+        });
+        
+        
     }
     
 }

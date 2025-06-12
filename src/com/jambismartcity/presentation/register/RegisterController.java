@@ -7,6 +7,7 @@ package com.jambismartcity.presentation.register;
 import com.jambismartcity.core.domain.User;
 import com.jambismartcity.core.usecase.RegisterUser;
 import com.jambismartcity.data.UserRepositoryImpl;
+import com.jambismartcity.presentation.login.LoginView;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,7 +45,11 @@ public class RegisterController {
 
         if (success) {
             JOptionPane.showMessageDialog(view, "Registrasi berhasil! Silakan login.", "Sukses", JOptionPane.INFORMATION_MESSAGE);
-            //view.getLoginLabel().doClick(); // Otomatis klik tombol kembali
+            
+            new LoginView().setVisible(true);
+            
+            view.dispose();
+            
         } else {
             JOptionPane.showMessageDialog(view, "Registrasi gagal! Username mungkin sudah digunakan.", "Error", JOptionPane.ERROR_MESSAGE);
         }

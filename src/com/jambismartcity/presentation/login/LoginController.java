@@ -7,7 +7,7 @@ package com.jambismartcity.presentation.login;
 import com.jambismartcity.core.domain.User;
 import com.jambismartcity.core.repository.UserRepository;
 import com.jambismartcity.data.UserRepositoryImpl;
-//import com.jambismartcity.presentation.mainmenu.MainMenuView;
+import com.jambismartcity.presentation.mainmenu.MainMenuView;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,10 +38,10 @@ public class LoginController {
             JOptionPane.showMessageDialog(view, "Login berhasil! Selamat datang, " + user.getFullName(), "Sukses", JOptionPane.INFORMATION_MESSAGE);
             
             // Buka MainMenuView
-            //new MainMenuView().setVisible(true);
+            new MainMenuView().setVisible(true);
             
             // Tutup LoginView
-            //view.dispose();
+            view.dispose();
             
         } else {
             // Login Gagal
