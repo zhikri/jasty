@@ -15,7 +15,12 @@ public interface UserRepository {
     // method untuk login, akan mengembalikan User jika berhasil, null jika gagal
     User login(String username, String password);
     
+    
+    // Mencari user berdasarkan username, untuk cek duplikasi
+    User findByUsername(String username);
+    
     // method untuk mendaftarkan user baru
     void register(User user);
+    
     
 }

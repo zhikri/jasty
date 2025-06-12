@@ -27,7 +27,7 @@ public class UserRepositoryImpl implements UserRepository{
              PreparedStatement pst = conn.prepareStatement(sql)) {
             
             pst.setString(1, username);
-            pst.setString(2, password); // Note: Untuk produksi nyata, password harus di-hash!
+            pst.setString(2, password);
             
             try (ResultSet rs = pst.executeQuery()) {
                 if (rs.next()) {
@@ -52,7 +52,51 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public void register(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       String sql = "INSERT INTO users (nama_lengkap, email, username, password) VALUES (?, ?, ?, ?)";
+       
+       try(Connection conn = DatabaseConnection.getConnection();
+               PreparedStatement pst = conn.prepareStatement(sql)){
+           
+           pst.setString(1, user.getFullName());
+           pst.setString(2, user.getEmail());
+           pst.setString(3, user.getUsername());
+           pst.setString(4, user.getPassword());
+           
+           pst.executeUpdate();
+           
+       }catch (SQLException e) {
+            // Sebaiknya log error ini
+            System.err.println("Error saat proses registrasi: " + e.getMessage());
+            // Anda bisa melempar exception custom di sini jika ingin ditangani oleh pemanggil
+        }
+       
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
+        User user = null;
+        
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement pst = conn.prepareStatement(sql)) {
+            
+            pst.setString(1, username);
+            
+            try (ResultSet rs = pst.executeQuery()) {
+                if (rs.next()) {
+                    user = new User(
+                        rs.getInt("id"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("nama_lengkap"),
+                        rs.getString("email")
+                    );
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error saat mencari user: " + e.getMessage());
+        }
+        return user;
     }
     
 }

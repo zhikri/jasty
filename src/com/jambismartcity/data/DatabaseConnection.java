@@ -17,27 +17,15 @@ public class DatabaseConnection {
     private static Connection connection;
     
     
-    public static Connection getConnection(){
-        if (connection == null){
-            try {
-            String url = "jdbc:mysql://localhost:8889/jasty";
-            String user = "root";
-            String password = "root";
-            
-            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-            
-            connection = DriverManager.getConnection(url, user, password);
-            
-            System.out.println("Koneksi ke database berhasil");
-                
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Koneksi ke database gagal! Error: " + e.getMessage());
-                // Keluar dari aplikasi jika koneksi gagal, karena aplikasi tidak bisa berjalan tanpanya
-                System.exit(1); 
-            }
-            
-        }
-        return connection;
+    public static Connection getConnection() throws SQLException{
+        // Setiap kali method ini dipanggil, ia akan membuat dan mengembalikan koneksi yang baru.
+        String url = "jdbc:mysql://localhost:8889/jasty";
+        String user = "root";
+        String password = "root"; // Sesuaikan jika perlu
+        
+        // Tidak perlu lagi DriverManager.registerDriver() di Java modern
+        return DriverManager.getConnection(url, user, password);
+      
     }
     
 }
